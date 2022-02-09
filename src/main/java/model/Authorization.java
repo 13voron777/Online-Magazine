@@ -1,4 +1,4 @@
-package magazine.model;
+package model;
 
 public class Authorization {
 }

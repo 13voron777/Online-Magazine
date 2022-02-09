@@ -1,4 +1,4 @@
-package magazine.persistence.model;
+package persistence.model;
 
 public class Journal {
 }
