@@ -1,4 +1,5 @@
-package magazine.model;
+package model;
 
+// test
 public class User {
 }
