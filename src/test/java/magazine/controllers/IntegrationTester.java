@@ -1,4 +1,4 @@
-package java.magazine.controllers;
+package magazine.controllers;
 
 public class IntegrationTester {
 }

@@ -1,4 +1,4 @@
-package persistence.model;
+package magazine.persistence.model;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -6,21 +6,21 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.util.Objects;
 
-@Entity
-@Table(name = "articles", schema = "onlineMagazine")
-@Getter
-@Setter
+//@Entity
+//@Table(name = "articles", schema = "onlineMagazine")
+//@Getter
+//@Setter
 public class Article {
-    @Id
-    @Column(name = "id")
+    //@Id
+    //@Column(name = "id")
     private long id;
 
-    @Basic
-    @Column(name = "header")
+    //@Basic
+    //@Column(name = "header")
     private String header;
 
-    @Basic
-    @Column(name = "content")
+    //@Basic
+    //@Column(name = "content")
     private String content;
 
     public Article() {
@@ -54,3 +54,4 @@ public class Article {
         return Objects.hash(id, header, content);
     }
 }
+
