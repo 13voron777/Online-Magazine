@@ -15,7 +15,7 @@ public class ArticleController {
     @GetMapping
     public ModelAndView listAllArticles(ModelAndView modelAndView) throws InterruptedException {
         modelAndView.addObject("articles", articleSimpleService.findAll());
-        //modelAndView.setViewName("index");
+        modelAndView.setViewName("index");
         return modelAndView;
     }
 
