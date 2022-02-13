@@ -8,4 +8,6 @@ public interface ArticleSimpleService {
     List<Article> findAll() throws InterruptedException;
 
     Article addArticle(Article article);
+
+    Article getArticleById(long id);
 }

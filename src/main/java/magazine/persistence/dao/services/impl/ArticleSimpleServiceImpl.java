@@ -4,6 +4,7 @@ import com.google.common.collect.Lists;
 import magazine.persistence.dao.repositories.ArticleRepository;
 import magazine.persistence.dao.services.interfaces.ArticleSimpleService;
 import magazine.persistence.model.Article;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,5 +21,15 @@ public class ArticleSimpleServiceImpl implements ArticleSimpleService {
     @Override
     public Article addArticle(Article article) {
         return articleRepository.save(article);
+    }
+
+    @Override
+    public Article getArticleById(long id){
+        return articleRepository.getArticleById(id);
+    }
+
+    @Autowired
+    public void setArticleRepository(ArticleRepository articleRepository) {
+        this.articleRepository = articleRepository;
     }
 }

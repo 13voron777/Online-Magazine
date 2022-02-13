@@ -8,5 +8,5 @@ import magazine.persistence.model.Article;
 @Repository
 @Transactional
 public interface ArticleRepository extends CrudRepository<Article, Long> {
-
+    Article getArticleById(long id);
 }
