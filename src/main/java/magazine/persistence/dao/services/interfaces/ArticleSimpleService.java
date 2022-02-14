@@ -5,7 +5,7 @@ import magazine.persistence.model.Article;
 import java.util.List;
 
 public interface ArticleSimpleService {
-    List<Article> findAll() throws InterruptedException;
+    List<Article> findAllArticles() throws InterruptedException;
 
     Article addArticle(Article article);
 

@@ -21,7 +21,7 @@
         <property name="entityManagerFactory" ref="entityManagerFactory"/>
     </bean>
 
-    <bean id="article1" class="magazine.persistence.model.Article">
+    <!--bean id="article1" class="magazine.persistence.model.Article">
         <property name="id" value="1"/>
         <property name="header" value="test1"/>
         <property name="content" value="test1 content"/>
@@ -37,6 +37,6 @@
         <property name="id" value="3"/>
         <property name="header" value="test3"/>
         <property name="content" value="test3 content"/>
-    </bean>
+    </bean-->
 
 </beans>

@@ -14,7 +14,7 @@ public class ArticleSimpleServiceImpl implements ArticleSimpleService {
     private ArticleRepository articleRepository;
 
     @Override
-    public List<Article> findAll() throws InterruptedException {
+    public List<Article> findAllArticles() throws InterruptedException {
         return Lists.newArrayList(articleRepository.findAll());
     }
 
