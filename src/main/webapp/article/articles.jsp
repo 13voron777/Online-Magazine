@@ -24,7 +24,8 @@
                 </c:forEach>
             </div>
         </div>
-        <br/>
+        <br/><br/>
+        <button onclick="window.location = '${pageContext.request.contextPath}'">Back</button>
         <button onclick="window.location = 'create_article.jsp'">Create a new article</button>
     </body>
 </html>

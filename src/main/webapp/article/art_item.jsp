@@ -14,5 +14,7 @@
     <body>
         <h1>${article.header}</h1>
         <p>${article.content}</p>
+        <br/><br/>
+        <button onclick="window.location = '${pageContext.request.contextPath}/article/all'">Back</button>
     </body>
 </html>

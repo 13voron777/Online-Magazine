@@ -11,15 +11,18 @@
         <title>Create journal</title>
     </head>
     <body>
-    <form method="post" action="${pageContext.request.contextPath}/journal/add">
-        <h3>Add new journal</h3>
-        <input name="id" type="number" placeholder="Id ">
-        <br/>
-        <input name="name" type="text" placeholder="Name ">
-        <br/>
-        <textarea name="description" placeholder="Description " rows="10" cols="30">
-                </textarea>
-        <button>Add journal</button>
-    </form>
+        <form method="post" action="${pageContext.request.contextPath}/journal/add">
+            <h3>Add new journal</h3>
+            <input name="id" type="number" placeholder="Id ">
+            <br/>
+            <input name="name" type="text" placeholder="Name ">
+            <br/>
+            <textarea name="description" placeholder="Description " rows="10" cols="30"></textarea>
+            <br/><br/>
+            <button>Add journal</button>
+        </form>
+        <button onclick="window.location = '${pageContext.request.contextPath}/journal/all'">
+            Back
+        </button>
     </body>
 </html>

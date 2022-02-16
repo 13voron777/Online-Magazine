@@ -12,7 +12,22 @@
         <title>${journal.name}</title>
     </head>
     <body>
-    <h1>${journal.name}</h1>
-    <p>${journal.description}</p>
+        <h1>${journal.name}</h1>
+        <p>${journal.description}</p>
+        <br/>
+        <div class="section">
+            <div class="section_container">
+                <h2>List of articles</h2>
+                <c:forEach items="${journal.articles}" var="articlei">
+                    <div class="list_item">
+                        <a href="<c:url value="/article/item?id=${articlei.id}"/>">
+                            <span>${articlei.header}</span>
+                        </a>
+                    </div>
+                </c:forEach>
+            </div>
+        </div>
+        <br/><br/>
+        <button onclick="window.location = '${pageContext.request.contextPath}/journal/all'">Back</button>
     </body>
 </html>

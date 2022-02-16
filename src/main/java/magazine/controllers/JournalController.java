@@ -33,7 +33,7 @@ public class JournalController {
     }
 
     @RequestMapping(value = "/item", method = RequestMethod.GET, params = {"id"})
-    public ModelAndView listArticleByLink(@RequestParam(value = "id") long id, ModelAndView modelAndView) {
+    public ModelAndView listJournalByLink(@RequestParam(value = "id") long id, ModelAndView modelAndView) {
         modelAndView.addObject("journal", journalSimpleService.getJournalById(id));
         modelAndView.setViewName("journal/jrnl_item");
         return modelAndView;

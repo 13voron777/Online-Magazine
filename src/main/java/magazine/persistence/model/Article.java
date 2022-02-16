@@ -23,13 +23,18 @@ public class Article {
     @Column(name = "content")
     private String content;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "journal")
+    private Journal journal;
+
     public Article() {
     }
 
-    public Article(long id, String header, String content) {
+    public Article(long id, String header, String content, Journal journal) {
         this.id = id;
         this.header = header;
         this.content = content;
+        this.journal = journal;
     }
 
     @Override

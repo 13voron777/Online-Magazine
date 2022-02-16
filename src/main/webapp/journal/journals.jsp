@@ -12,19 +12,14 @@
         <title>Journals</title>
     </head>
     <body>
-        <div class="section">
-            <div class="section_container">
-                <h1>List of journals</h1>
-                <c:forEach items="${journal}" var="journali">
-                    <div class="list_item">
-                        <a href="<c:url value="/journal/item?id=${journali.id}"/>">
-                            <span>${journali.name}</span>
-                        </a>
-                    </div>
-                </c:forEach>
-            </div>
-        </div>
-        <br/>
+        <h1>List of journals</h1>
+        <c:forEach items="${journal}" var="journali">
+                <a href="<c:url value="/journal/item?id=${journali.id}"/>">
+                    <span>${journali.name}</span><br/>
+                </a>
+        </c:forEach>
+        <br/><br/>
+        <button onclick="window.location = '${pageContext.request.contextPath}'">Back</button>
         <button onclick="window.location = 'create_journal.jsp'">Create a new journal</button>
     </body>
 </html>
