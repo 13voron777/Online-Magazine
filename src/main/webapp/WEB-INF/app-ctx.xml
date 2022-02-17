@@ -33,35 +33,31 @@
     </bean>
 
     <!--    AOP-->
-    <!--bean id="myLogger" class="aspects.MyLogger"/>
-    <bean id="securityAspect" class="aspects.CheckAuthAspect"/>
+    <bean id="myLogger" class="magazine.aspects.MyLogger"/>
+    <bean id="securityAspect" class="magazine.aspects.SecurityAspect"/>
 
-    <bean id="auth" class="persistence.model.Auth" scope="session" lazy-init="false">
-        <property name="auth" value="false"/>
+    <bean id="auth" class="magazine.model.Auth" scope="session" lazy-init="false">
+        <property name="authorized" value="false"/>
     </bean>
 
     <aop:config>
-        <aop:pointcut id="carPointCut"
-                      expression="execution(* com.itvdn.controllers.CarController.*(..))"/-->
+        <aop:pointcut id="AuthControllerPointCut" expression="execution(* magazine.controllers.AuthController.*(..))"/>
 
-        <!--        <aop:aspect ref="securityAspect" id="securityChecker">-->
-        <!--            <aop:before method="checkAuth"-->
-        <!--                        pointcut="execution(* com.itvdn.controllers.AuthController.*(..))-->
-        <!--                        &amp;&amp; !execution(* com.itvdn.controllers.AuthController.login(..))-->
-        <!--                        &amp;&amp; !execution(* com.itvdn.controllers.AuthController.logout(..))-->
-        <!--                        &amp;&amp; !execution(* com.itvdn.controllers.AuthController.hello(..))"/>-->
-        <!--        </aop:aspect>-->
-
-        <!--aop:aspect ref="myLogger" id="myAspect">
-            <aop:before method="beforeMethodInvocation" pointcut-ref="carPointCut"/>
-            <aop:after-returning
-                    method="afterMethodReturn"
-                    pointcut="execution(* com.itvdn.persistence.dao.repositories.CarRepository.*(..)) and args(result)"/>
-            <aop:after-throwing method="afterMethodException" throwing="e"
-                                pointcut="within(@org.springframework.web.bind.annotation.RequestMapping *)"/>
+        <!--aop:aspect ref="securityAspect" id="securityChecker">
+            <aop:before method="checkAuthorize"
+                        pointcut="execution(* com.itvdn.controllers.HelloITVDNController.*(..))
+                        &amp;&amp; !execution(* com.itvdn.controllers.HelloITVDNController.authorize(..))
+                        &amp;&amp; !execution(* com.itvdn.controllers.HelloITVDNController.unAuthorize(..))
+                        &amp;&amp; !execution(* com.itvdn.controllers.HelloITVDNController.helloITVDN(..))" />
         </aop:aspect>
-    </aop:config-->
 
+        <aop:aspect ref="myLogger" id="myAspect">
+            <aop:before method="beforeMethodInvocation" pointcut-ref="helloITVDNControllerPointCut" />
+            <aop:after-returning method="afterReturn" pointcut="execution(* com.itvdn.persistence.dao.repositories.EmployeeRepository.*(..)) and args(result)"/>
+            <aop:after-throwing method="afterThrowing" throwing="ex"
+                                pointcut="within(@org.springframework.web.bind.annotation.RequestMapping *)"/>
+        </aop:aspect-->
+    </aop:config>
     <!--    AOP-->
 
     <!--Security-->
