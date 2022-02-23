@@ -21,7 +21,7 @@
 
     <import resource="app-ctx.xml"/>
 
-    <mvc:annotation-driven />
-    <!--mvc:resources mapping="/css/**" location="/assets/css/"/>
+    <!--mvc:annotation-driven />
+    <mvc:resources mapping="/css/**" location="/assets/css/"/>
     <mvc:resources mapping="/js/**" location="/assets/js/"/-->
 </beans>
