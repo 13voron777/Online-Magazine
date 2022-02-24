@@ -9,4 +9,9 @@ public class AuthController {
     public String loginPage() {
         return "login";
     }
+
+    @GetMapping(value = "/firstPage")
+    public String firstPage() {
+        return "common/firstPage";
+    }
 }

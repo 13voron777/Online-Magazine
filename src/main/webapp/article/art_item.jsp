@@ -16,5 +16,6 @@
         <p>${article.content}</p>
         <br/><br/>
         <button onclick="window.location = '${pageContext.request.contextPath}/article/all'">Back</button>
+        <button onclick="window.location = '${pageContext.request.contextPath}/firstPage'">To main</button>
     </body>
 </html>

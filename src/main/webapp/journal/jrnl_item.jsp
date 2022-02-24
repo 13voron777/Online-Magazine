@@ -29,5 +29,6 @@
         </div>
         <br/><br/>
         <button onclick="window.location = '${pageContext.request.contextPath}/journal/all'">Back</button>
+        <button onclick="window.location = '${pageContext.request.contextPath}/firstPage'">To main</button>
     </body>
 </html>
