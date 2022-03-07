@@ -18,7 +18,7 @@
     <url-pattern>/</url-pattern>
   </servlet-mapping>
 
-  <filter>
+  <!--filter>
     <filter-name>springSecurityFilterChain</filter-name>
     <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
   </filter>
@@ -33,7 +33,7 @@
   </context-param>
   <listener>
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-  </listener>
+  </listener-->
 
 </web-app>
 

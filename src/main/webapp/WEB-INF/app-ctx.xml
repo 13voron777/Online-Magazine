@@ -4,7 +4,6 @@
        xmlns:tx="http://www.springframework.org/schema/tx"
        xmlns="http://www.springframework.org/schema/beans"
        xmlns:aop="http://www.springframework.org/schema/aop"
-       xmlns:cache="http://www.springframework.org/schema/cache"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:security="http://www.springframework.org/schema/security"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
@@ -12,10 +11,9 @@
        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
-       http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd
        http://www.springframework.org/schema/security
        https://www.springframework.org/schema/security/spring-security.xsd">
-
+    <import resource="spring-database.xml"/>
     <context:component-scan base-package="magazine.*"/>
 
     <tx:annotation-driven transaction-manager="txManager"/>
@@ -32,61 +30,52 @@
         <property name="entityManagerFactory" ref="entityManagerFactory"/>
     </bean>
 
-    <!--    AOP-->
-    <bean id="myLogger" class="magazine.aspects.MyLogger"/>
-    <bean id="securityAspect" class="magazine.aspects.SecurityAspect"/>
 
-    <bean id="auth" class="magazine.model.Auth" scope="session" lazy-init="false">
-        <property name="authorized" value="false"/>
-    </bean>
-
+    <!--bean id="logger" class="courseProject.aspects.Logger"/>
     <aop:config>
-        <aop:pointcut id="AuthControllerPointCut" expression="execution(* magazine.controllers.AuthController.*(..))"/>
+        <aop:pointcut id="journalControllerPointCut" expression="execution(* courseProject.controllers.JournalController.*(..))"/>
+        <aop:pointcut id="userControllerPointCut" expression="execution(* courseProject.controllers.UserController.*(..))"/>
+        <aop:pointcut id="profileControllerPointCut" expression="execution(* courseProject.controllers.ProfileController.*(..))"/>
 
-        <aop:aspect ref="securityAspect" id="securityChecker">
-            <aop:before method="checkAuthorize"
-                        pointcut="execution(* magazine.controllers.JournalController.*(..))
-                        &amp;&amp; execution(* magazine.controllers.ArticleController.*(..))" />
+        <aop:aspect ref="logger" id="myAspect">
+            <aop:before method="beforeMethodInvocation" pointcut-ref="journalControllerPointCut" />
+            <aop:after-returning method="afterReturn" pointcut="execution(* courseProject.persistence.dao.repositories
+            .JournalRepository.*(..)) and args(result)"/>
+            <aop:before method="beforeMethodInvocation" pointcut-ref="userControllerPointCut" />
+            <aop:after-returning method="afterReturn" pointcut="execution(* courseProject.persistence.dao.repositories
+            .UserRepository.*(..)) and args(result)"/>
+            <aop:before method="beforeMethodInvocation" pointcut-ref="profileControllerPointCut" />
+            <aop:after-returning method="afterReturn" pointcut="execution(* courseProject.persistence.dao.repositories
+            .ProfileRepository.*(..)) and args(result)"/>
         </aop:aspect>
+    </aop:config-->
 
-        <!--aop:aspect ref="myLogger" id="myAspect">
-            <aop:before method="beforeMethodInvocation" pointcut-ref="helloITVDNControllerPointCut" />
-            <aop:after-returning method="afterReturn" pointcut="execution(* magazine.persistence.dao.repositories.EmployeeRepository.*(..)) and args(result)"/>
-            <aop:after-throwing method="afterThrowing" throwing="ex"
-                                pointcut="within(@org.springframework.web.bind.annotation.RequestMapping *)"/>
-        </aop:aspect-->
-    </aop:config>
-    <!--    AOP-->
 
-    <!--Security-->
-    <security:global-method-security pre-post-annotations="enabled"/>
+    <!--security:global-method-security pre-post-annotations="enabled"/>
     <security:http auto-config="true" use-expressions="true">
         <security:csrf disabled="true"/>
 
-        <security:intercept-url pattern="/article/**" access="hasAnyAuthority('ROLE_USER', 'ROLE_ADMIN')"/>
         <security:intercept-url pattern="/journal/**" access="hasAnyAuthority('ROLE_USER', 'ROLE_ADMIN')"/>
-        <security:intercept-url pattern="/firstPage" access="hasAnyAuthority('ROLE_USER', 'ROLE_ADMIN')"/>
+        <security:intercept-url pattern="/profile/**" access="hasAnyAuthority('ROLE_USER', 'ROLE_ADMIN')"/>
 
-        <security:intercept-url pattern="/index.jsp" access="permitAll"/>
-        <security:intercept-url pattern="/login.jsp" access="permitAll"/>
-        <!--login-page="/login" username-parameter="username" password-parameter="password"-->
+        <security:intercept-url pattern="/**" access="permitAll"/>
         <security:form-login login-page="/login" username-parameter="username" password-parameter="password"
-                             default-target-url="/firstPage" always-use-default-target="false" authentication-failure-url="/login?error=true"/>
-        <!--security:form-login
-                default-target-url="/" always-use-default-target="false" authentication-failure-url="/login?error=true"/-->
-        <security:logout logout-success-url="/" invalidate-session="true"/>
+                             default-target-url="/journal/all" always-use-default-target="false" authentication-failure-url="/login?error=true"/>
+        <security:form-login
+                default-target-url="/" always-use-default-target="false" authentication-failure-url="/login?error=true"/>
+        <security:logout logout-success-url="/"/>
         <security:remember-me/>
     </security:http>
+
     <security:authentication-manager>
         <security:authentication-provider>
-            <security:user-service>
-                <security:user name="user" authorities="ROLE_USER" password="{noop}user"/>
-                <security:user name="admin" authorities="ROLE_ADMIN" password="{noop}admin"/>
-            </security:user-service>
+            <security:jdbc-user-service data-source-ref="dataSource"
+                                        users-by-username-query=
+                                                "select username,password, enabled from users where username=?"
+                                        authorities-by-username-query=
+                                                "select username, role from user_roles where username =?  "/>
+
         </security:authentication-provider>
-    </security:authentication-manager>
-    
+    </security:authentication-manager-->
 
-
-    <!--Security-->
 </beans>

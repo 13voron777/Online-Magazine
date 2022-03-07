@@ -19,6 +19,7 @@
     <maven.compiler.target>1.7</maven.compiler.target>
   </properties>
   <dependencies>
+
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-aop</artifactId>
@@ -29,6 +30,8 @@
       <artifactId>aspectjweaver</artifactId>
       <version>1.9.7</version>
     </dependency>
+
+
     <dependency>
       <groupId>org.hamcrest</groupId>
       <artifactId>hamcrest-library</artifactId>
@@ -41,12 +44,14 @@
       <version>2.6.0</version>
       <scope>test</scope>
     </dependency>
+
     <!-- https://mvnrepository.com/artifact/org.springframework/spring-webmvc -->
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-webmvc</artifactId>
       <version>5.3.15</version>
     </dependency>
+
     <!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
     <dependency>
       <groupId>javax.servlet</groupId>
@@ -54,36 +59,43 @@
       <version>4.0.1</version>
       <scope>provided</scope>
     </dependency>
+
     <!-- https://mvnrepository.com/artifact/javax.servlet.jsp.jstl/jstl-api -->
     <dependency>
       <groupId>jstl</groupId>
       <artifactId>jstl</artifactId>
       <version>1.2</version>
     </dependency>
+
+
     <!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-jpa -->
     <dependency>
       <groupId>org.springframework.data</groupId>
       <artifactId>spring-data-jpa</artifactId>
       <version>2.6.1</version>
     </dependency>
+
     <!-- https://mvnrepository.com/artifact/org.hibernate.javax.persistence/hibernate-jpa-2.1-api -->
     <dependency>
       <groupId>org.hibernate.javax.persistence</groupId>
       <artifactId>hibernate-jpa-2.1-api</artifactId>
       <version>1.0.2.Final</version>
     </dependency>
+
     <!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
     <dependency>
       <groupId>com.google.guava</groupId>
       <artifactId>guava</artifactId>
       <version>31.0.1-jre</version>
     </dependency>
+
     <dependency>
       <groupId>mysql</groupId>
       <artifactId>mysql-connector-java</artifactId>
       <version>8.0.25</version>
       <scope>runtime</scope>
     </dependency>
+
     <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-core</artifactId>
@@ -99,25 +111,33 @@
       <artifactId>hibernate-ehcache</artifactId>
       <version>5.6.3.Final</version>
     </dependency>
+
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
       <version>1.18.22</version>
       <scope>provided</scope>
     </dependency>
+
+
+
     <!--Testing-->
+
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>4.13.2</version>
       <scope>test</scope>
     </dependency>
+
+
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-test</artifactId>
       <version>5.3.15</version>
       <scope>test</scope>
     </dependency>
+
     <!-- https://mvnrepository.com/artifact/org.mockito/mockito-all -->
     <dependency>
       <groupId>org.mockito</groupId>
@@ -125,6 +145,8 @@
       <version>1.10.19</version>
       <scope>test</scope>
     </dependency>
+
+
     <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
@@ -137,12 +159,14 @@
       <artifactId>jackson-dataformat-xml</artifactId>
       <version>2.13.1</version>
     </dependency>
+
     <!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-web -->
     <dependency>
       <groupId>org.springframework.security</groupId>
       <artifactId>spring-security-web</artifactId>
       <version>5.5.1</version>
     </dependency>
+
     <!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-config -->
     <dependency>
       <groupId>org.springframework.security</groupId>
@@ -155,22 +179,10 @@
       <artifactId>spring-security-taglibs</artifactId>
       <version>5.5.1</version>
     </dependency>
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-beans</artifactId>
-      <version>5.3.15</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-beans</artifactId>
-      <version>5.3.15</version>
-      <scope>compile</scope>
-    </dependency>
   </dependencies>
 
   <build>
-    <finalName>Online Magazine</finalName>
+    <finalName>SpringCourseProject</finalName>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
       <plugins>
         <plugin>
@@ -202,15 +214,17 @@
           <artifactId>maven-deploy-plugin</artifactId>
           <version>2.8.2</version>
         </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-compiler-plugin</artifactId>
-          <configuration>
-            <source>8</source>
-            <target>8</target>
-          </configuration>
-        </plugin>
       </plugins>
     </pluginManagement>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>8</source>
+          <target>8</target>
+        </configuration>
+      </plugin>
+    </plugins>
   </build>
 </project>

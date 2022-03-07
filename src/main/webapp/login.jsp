@@ -23,5 +23,6 @@
         <br/>
         <input type="submit" value="Login">
     </form>
+    <button onclick="window.location = '${pageContext.request.contextPath}'">To main</button>
 </body>
 </html>

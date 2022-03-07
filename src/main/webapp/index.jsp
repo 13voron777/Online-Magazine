@@ -6,7 +6,7 @@
             Sign in
         </button>
         <br/><br/>
-        <button onclick="">
+        <button onclick="window.location = '${pageContext.request.contextPath}/registration'">
             Sign up (in development)
         </button>
     </body>

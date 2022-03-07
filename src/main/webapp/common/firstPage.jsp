@@ -17,8 +17,16 @@
             To journals
         </button>
         <br/><br/>
+        <button onclick="window.location = '${pageContext.request.contextPath}/journal/all'">
+            To subscribed journals (in develop)
+        </button>
+        <br/><br/>
         <button onclick="window.location = '${pageContext.request.contextPath}/article/all'">
             To articles
+        </button>
+        <br/><br/>
+        <button onclick="window.location = '${pageContext.request.contextPath}/article/all'">
+            To subscribed journal's articles (in develop)
         </button>
         <br/><br/>
         <form action="${pageContext.request.contextPath}/logout" method="post">
