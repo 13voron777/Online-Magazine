@@ -12,8 +12,8 @@ import java.util.Objects;
 @Setter
 public class Article {
     @Id
-    @Column(name = "id")
-    private long id;
+    @Column(name = "article_id")
+    private Long id;
 
     @Basic
     @Column(name = "header")

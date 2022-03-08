@@ -1,15 +1,20 @@
 package magazine.controllers;
 
+import magazine.persistence.dao.services.interfaces.RoleSimpleService;
+import magazine.persistence.dao.services.interfaces.UserSimpleService;
+import magazine.persistence.model.Role;
+import magazine.persistence.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.context.request.WebRequest;
 
 @Controller
 public class AuthController {
-    //@Autowired
-    //private UserService userService;
+    @Autowired
+    private UserSimpleService userSimpleService;
+
+    @Autowired
+    private RoleSimpleService roleSimpleService;
 
     @GetMapping(value = "/login")
     public String loginPage() {

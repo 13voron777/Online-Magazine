@@ -14,8 +14,8 @@ import java.util.Objects;
 @Setter
 public class Journal {
     @Id
-    @Column(name = "id")
-    private long id;
+    @Column(name = "journal_id")
+    private Long id;
 
     @Basic
     @Column(name = "name")
