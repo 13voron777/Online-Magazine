@@ -15,6 +15,8 @@ public class Role implements GrantedAuthority {
     @Column(name = "role_id")
     private Long id;
     private String role;
+    @Basic
+    @Column(name = "username")
     private String login;
 
     @ManyToOne

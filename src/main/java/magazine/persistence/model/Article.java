@@ -14,13 +14,7 @@ public class Article {
     @Id
     @Column(name = "article_id")
     private Long id;
-
-    @Basic
-    @Column(name = "header")
     private String header;
-
-    @Basic
-    @Column(name = "content")
     private String content;
 
     @ManyToOne(fetch = FetchType.EAGER)

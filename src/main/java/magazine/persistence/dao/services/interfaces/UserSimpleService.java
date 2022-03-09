@@ -5,5 +5,5 @@ import magazine.persistence.model.User;
 public interface UserSimpleService {
     User addUser(User user);
 
-    User getUserByLogin(String login);
+    //User getUserByLogin(String login);
 }

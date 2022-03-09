@@ -16,13 +16,7 @@ public class Journal {
     @Id
     @Column(name = "journal_id")
     private Long id;
-
-    @Basic
-    @Column(name = "name")
     private String name;
-
-    @Basic
-    @Column(name = "description")
     private String description;
 
     @OneToMany(mappedBy = "journal", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)

@@ -11,19 +11,23 @@ import java.util.Collection;
 import java.util.List;
 
 @Entity
-@Table(name = "users", schema = "onlineMagazine")
+@Table(name = "om_users", schema = "onlineMagazine")
 @Getter
 @Setter
 public class User implements UserDetails {
     @Id
-    @Column(name = "login")
+    @Column(name = "user_id")
+    private Long id;
+    @Column(name = "username")
     private String login;
-
     private String password;
 
     @OneToMany
     @Transient
     private List<Role> roles = new ArrayList<>();
+
+    public User() {
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

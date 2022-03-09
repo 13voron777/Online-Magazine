@@ -7,6 +7,10 @@ import magazine.persistence.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.Collections;
 
 @Controller
 public class AuthController {
@@ -16,20 +20,39 @@ public class AuthController {
     @Autowired
     private RoleSimpleService roleSimpleService;
 
-    @GetMapping(value = "/login")
-    public String loginPage() {
-        return "login";
-    }
+    private Long id_gen = 0L;
 
     @GetMapping(value = "/firstPage")
     public String firstPage() {
         return "common/firstPage";
     }
 
-    /*@GetMapping("/registration")
-    public String showRegistrationForm(WebRequest request, Model model) {
-        UserDto userDto = new UserDto();
-        model.addAttribute("user", userDto);
+    @GetMapping(value = "/login")
+    public String loginPage() {
+        return "login";
+    }
+
+    @GetMapping("/registration")
+    public String registrationPage() {
         return "registration";
-    }*/
+    }
+
+    @PostMapping("/register")
+    public String registerNewUser(HttpServletRequest request) {
+        User user = new User();
+        user.setId(Long.valueOf(request.getParameter("user_id")));
+        user.setLogin(request.getParameter("login"));
+        user.setPassword("{noop}" + request.getParameter("password"));
+
+        Role role = new Role();
+        role.setId(++id_gen);
+        role.setRole("ROLE_USER");
+        role.setLogin(user.getLogin());
+        user.setRoles(Collections.singletonList(role));
+
+        userSimpleService.addUser(user);
+        roleSimpleService.addRole(role);
+
+        return "redirect: login";
+    }
 }
