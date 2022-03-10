@@ -1,17 +1,15 @@
 package magazine.persistence.model;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 import javax.persistence.*;
 import java.util.Objects;
 
-@Entity
-@Table(name = "articles", schema = "onlineMagazine")
-@Getter
-@Setter
+@Data
+@Entity(name = "articles")
 public class Article {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "article_id")
     private Long id;
     private String header;

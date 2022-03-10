@@ -20,8 +20,6 @@ public class AuthController {
     @Autowired
     private RoleSimpleService roleSimpleService;
 
-    private Long id_gen = 0L;
-
     @GetMapping(value = "/firstPage")
     public String firstPage() {
         return "common/firstPage";
@@ -40,14 +38,12 @@ public class AuthController {
     @PostMapping("/register")
     public String registerNewUser(HttpServletRequest request) {
         User user = new User();
-        user.setId(Long.valueOf(request.getParameter("user_id")));
         user.setLogin(request.getParameter("login"));
         user.setPassword("{noop}" + request.getParameter("password"));
 
         Role role = new Role();
-        role.setId(++id_gen);
         role.setRole("ROLE_USER");
-        role.setLogin(user.getLogin());
+        role.setUsername(user.getLogin());
         user.setRoles(Collections.singletonList(role));
 
         userSimpleService.addUser(user);

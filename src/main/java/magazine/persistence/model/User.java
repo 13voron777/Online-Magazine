@@ -1,7 +1,7 @@
 package magazine.persistence.model;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
+
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -10,18 +10,14 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+@Data
 @Entity
-@Table(name = "om_users", schema = "onlineMagazine")
-@Getter
-@Setter
+@Table(name = "users")
 public class User implements UserDetails {
     @Id
-    @Column(name = "user_id")
-    private Long id;
     @Column(name = "username")
     private String login;
     private String password;
-
     @OneToMany
     @Transient
     private List<Role> roles = new ArrayList<>();

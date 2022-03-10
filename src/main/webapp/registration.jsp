@@ -15,10 +15,6 @@
     <form method="POST" action="${pageContext.request.contextPath}/register">
         <table>
             <tr>
-                <td><label for="user_id">Id</label></td>
-                <td><input type="number" name="user_id" id="user_id"/></td>
-            </tr>
-            <tr>
                 <td><label for="login">Login</label></td>
                 <td><input type="text" name="login" id="login"/></td>
             </tr>

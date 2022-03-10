@@ -1,5 +1,36 @@
 use onlinemagazine;
 
+CREATE  TABLE users (
+                        username VARCHAR(30) NOT NULL,
+                        password VARCHAR(30) NOT NULL,
+                        enabled TINYINT DEFAULT 1,
+                        PRIMARY KEY (username)
+);
+
+CREATE TABLE user_roles (
+                            role_id int NOT NULL AUTO_INCREMENT,
+                            username varchar(30) NOT NULL,
+                            role varchar(30) NOT NULL,
+                            PRIMARY KEY (role_id),
+                            FOREIGN KEY (username) REFERENCES users (username)
+);
+
+create table journal(
+                        journal_id int auto_increment not null,
+                        name varchar(30) not null,
+                        description varchar(30) not null,
+                        primary key(journal_id)
+);
+
+create table article(
+                        article_id int auto_increment not null,
+                        header varchar(30) not null,
+                        content varchar(30) not null,
+                        journal int not null,
+                        primary key(article_id),
+                        foreign key (journal) references journal(journal_id)
+);
+
 /*insert into profile(first_name, last_name, email, phone)
 values ('Ivan', 'Petrov', 'petrov@mail.ru', '+12345678'),
        ('Petr', 'Ivanov', 'ivanov@gmail.com', '+87654321');

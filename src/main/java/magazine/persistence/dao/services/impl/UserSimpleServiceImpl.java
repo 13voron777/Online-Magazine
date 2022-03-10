@@ -15,10 +15,10 @@ public class UserSimpleServiceImpl implements UserSimpleService {
         return userRepository.save(user);
     }
 
-    /*@Override
-    public User getUserByLogin(String login) {
-        return userRepository.getUserByLogin(login);
-    }*/
+    @Override
+    public User getUserByLogin(String userName) {
+        return userRepository.getUserByLogin(userName);
+    }
 
     @Autowired
     public void setUserRepository(UserRepository userRepository) {
