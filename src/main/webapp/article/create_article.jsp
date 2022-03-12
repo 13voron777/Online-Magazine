@@ -15,8 +15,6 @@
     <body>
         <form method="post" action="${pageContext.request.contextPath}/article/add">
             <h3>Add new article</h3>
-            <input name="id" type="number" placeholder="Id ">
-            <br/>
             <input name="header" type="text" placeholder="Header ">
             <br/>
             <textarea name="content" placeholder="Content " rows="10" cols="30"></textarea>

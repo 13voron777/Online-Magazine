@@ -35,7 +35,6 @@ public class ArticleController {
             throws InterruptedException {
         Article article = new Article();
         List<Journal> journals = journalSimpleService.findAllJournals();
-        article.setId(Long.parseLong(request.getParameter("id")));
         article.setHeader(request.getParameter("header"));
         article.setContent(request.getParameter("content"));
         for (Journal journal: journals) {

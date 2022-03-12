@@ -1,7 +1,9 @@
 package magazine.controllers;
 
 import magazine.persistence.dao.services.interfaces.JournalSimpleService;
+import magazine.persistence.dao.services.interfaces.UserSimpleService;
 import magazine.persistence.model.Journal;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +17,9 @@ public class JournalController {
     @Autowired
     private JournalSimpleService journalSimpleService;
 
+    @Autowired
+    private UserSimpleService userSimpleService;
+
     @GetMapping(value = "/all")
     public ModelAndView listAllJournals(ModelAndView modelAndView) throws InterruptedException {
         modelAndView.addObject("journal", journalSimpleService.findAllJournals());
@@ -25,7 +30,6 @@ public class JournalController {
     @PostMapping(value = "/add")
     public String addNewJournal(HttpServletRequest request) {
         Journal journal = new Journal();
-        journal.setId(Long.parseLong(request.getParameter("id")));
         journal.setName(request.getParameter("name"));
         journal.setDescription(request.getParameter("description"));
         journalSimpleService.addJournal(journal);
@@ -34,6 +38,24 @@ public class JournalController {
 
     @RequestMapping(value = "/item", method = RequestMethod.GET, params = {"id"})
     public ModelAndView listJournalByLink(@RequestParam(value = "id") long id, ModelAndView modelAndView) {
+        modelAndView.addObject("journal", journalSimpleService.getJournalById(id));
+        modelAndView.setViewName("journal/jrnl_item");
+        return modelAndView;
+    }
+
+    @PostMapping(value = "/subscribe/{id}")
+    public ModelAndView Subscribe(@PathVariable long id, ModelAndView modelAndView) {
+        String userName = SecurityContextHolder.getContext().getAuthentication().getName();
+        journalSimpleService.subscribeJournal(userName, id);
+        modelAndView.addObject("journal", journalSimpleService.getJournalById(id));
+        modelAndView.setViewName("journal/jrnl_item");
+        return modelAndView;
+    }
+
+    @PostMapping(value = "/unsubscribe/{id}")
+    public ModelAndView Unsubscribe(@PathVariable long id, ModelAndView modelAndView) {
+        String userName = SecurityContextHolder.getContext().getAuthentication().getName();
+        journalSimpleService.unSubscribeJournal(userName, id);
         modelAndView.addObject("journal", journalSimpleService.getJournalById(id));
         modelAndView.setViewName("journal/jrnl_item");
         return modelAndView;

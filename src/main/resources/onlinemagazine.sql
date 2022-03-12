@@ -15,20 +15,28 @@ CREATE TABLE user_roles (
                             FOREIGN KEY (username) REFERENCES users (username)
 );
 
-create table journal(
+create table journals (
                         journal_id int auto_increment not null,
                         name varchar(30) not null,
                         description varchar(30) not null,
                         primary key(journal_id)
 );
 
-create table article(
+create table articles (
                         article_id int auto_increment not null,
                         header varchar(30) not null,
                         content varchar(30) not null,
                         journal int not null,
                         primary key(article_id),
-                        foreign key (journal) references journal(journal_id)
+                        foreign key (journal) references journals(journal_id)
+);
+
+create table users_journal(
+                              username VARCHAR(30) NOT NULL,
+                              journal_id int not null,
+                              primary key (username, journal_id),
+                              foreign key (username) references users(username),
+                              foreign key (journal_id) references journals(journal_id)
 );
 
 /*insert into profile(first_name, last_name, email, phone)

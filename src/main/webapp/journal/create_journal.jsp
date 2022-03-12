@@ -13,8 +13,6 @@
     <body>
         <form method="post" action="${pageContext.request.contextPath}/journal/add">
             <h3>Add new journal</h3>
-            <input name="id" type="number" placeholder="Id ">
-            <br/>
             <input name="name" type="text" placeholder="Name ">
             <br/>
             <textarea name="description" placeholder="Description " rows="10" cols="30"></textarea>

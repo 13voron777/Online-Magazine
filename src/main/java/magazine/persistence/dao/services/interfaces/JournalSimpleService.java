@@ -10,4 +10,10 @@ public interface JournalSimpleService {
     Journal addJournal(Journal journal);
 
     Journal getJournalById(long id);
+
+    void subscribeJournal(String userName, Long idJournal);
+
+    boolean checkSubscription(String userName, Long idJournal);
+
+    void unSubscribeJournal(String userName, Long idJournal);
 }

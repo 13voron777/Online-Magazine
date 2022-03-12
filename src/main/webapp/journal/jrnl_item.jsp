@@ -14,15 +14,13 @@
     <body>
         <h1>${journal.name}</h1>
         <p>${journal.description}</p>
-        <a href="<c:url value="/journal/item?id=${journal.id}"/>">
-            Subscribe
-            <%--c:if test = "Unsubscribe">
-                <c:out value = "Subscribe"/>
-            </c:if>
-            <c:if test = "Subscribe">
-                <c:out value = "Unsubscribe"/>
-            </c:if--%>
-        </a>
+        <form method="post" action="${pageContext.request.contextPath}/journal/subscribe/${journal.id}">
+            <button>Subscribe</button>
+        </form>
+        <form method="post" action="${pageContext.request.contextPath}/journal/unsubscribe/${journal.id}">
+            <button>Unsubscribe</button>
+        </form>
+
         <br/>
         <div class="section">
             <div class="section_container">

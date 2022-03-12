@@ -1,14 +1,16 @@
 package magazine.persistence.model;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-@Data
 @Entity(name = "journals")
+@Getter
+@Setter
 public class Journal {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,6 +21,10 @@ public class Journal {
 
     @OneToMany(mappedBy = "journal", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
     private List<Article> articles = new ArrayList<>();
+
+    @ManyToMany(mappedBy = "journals")
+    @Transient
+    private List<User> users = new ArrayList<>();
 
     public Journal() {
     }

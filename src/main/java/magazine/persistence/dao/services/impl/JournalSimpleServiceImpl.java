@@ -28,6 +28,21 @@ public class JournalSimpleServiceImpl implements JournalSimpleService {
         return jrnlRepository.getJournalById(id);
     }
 
+    @Override
+    public void subscribeJournal(String userName, Long idJournal) {
+        jrnlRepository.subscribeJournal(userName, idJournal);
+    }
+
+    @Override
+    public boolean checkSubscription(String userName, Long idJournal) {
+        return false;
+    }
+
+    @Override
+    public void unSubscribeJournal(String userName, Long idJournal) {
+        jrnlRepository.unsubscribeJournal(userName, idJournal);
+    }
+
     @Autowired
     public void setJrnlRepository(JrnlRepository jrnlRepository) {
         this.jrnlRepository = jrnlRepository;
