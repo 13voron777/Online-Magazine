@@ -1,7 +1,6 @@
 package magazine.controllers;
 
 import magazine.persistence.dao.services.interfaces.JournalSimpleService;
-import magazine.persistence.dao.services.interfaces.UserSimpleService;
 import magazine.persistence.model.Journal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -17,13 +16,18 @@ public class JournalController {
     @Autowired
     private JournalSimpleService journalSimpleService;
 
-    @Autowired
-    private UserSimpleService userSimpleService;
-
     @GetMapping(value = "/all")
     public ModelAndView listAllJournals(ModelAndView modelAndView) throws InterruptedException {
         modelAndView.addObject("journal", journalSimpleService.findAllJournals());
         modelAndView.setViewName("journal/journals");
+        return modelAndView;
+    }
+
+    @GetMapping(value = "/sub_journals")
+    public ModelAndView listAllSubJournals(ModelAndView modelAndView) {
+        String userName = SecurityContextHolder.getContext().getAuthentication().getName();
+        modelAndView.addObject("journal", journalSimpleService.findAllSubJournals(userName));
+        modelAndView.setViewName("journal/sub_journals");
         return modelAndView;
     }
 
@@ -48,8 +52,7 @@ public class JournalController {
         String userName = SecurityContextHolder.getContext().getAuthentication().getName();
         journalSimpleService.subscribeJournal(userName, id);
         modelAndView.addObject("journal", journalSimpleService.getJournalById(id));
-        modelAndView.setViewName("journal/jrnl_item");
-        return modelAndView;
+        return listJournalByLink(id, modelAndView);
     }
 
     @PostMapping(value = "/unsubscribe/{id}")
@@ -57,7 +60,6 @@ public class JournalController {
         String userName = SecurityContextHolder.getContext().getAuthentication().getName();
         journalSimpleService.unSubscribeJournal(userName, id);
         modelAndView.addObject("journal", journalSimpleService.getJournalById(id));
-        modelAndView.setViewName("journal/jrnl_item");
-        return modelAndView;
+        return listJournalByLink(id, modelAndView);
     }
 }

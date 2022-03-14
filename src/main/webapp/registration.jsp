@@ -9,6 +9,7 @@
 <html>
 <head>
     <title>Registration</title>
+    <style><%@include file="/CSS/common.css"%></style>
 </head>
 <body>
     <h2>Online magazine user registration</h2>
@@ -29,5 +30,6 @@
             </tr>
         </table>
     </form>
+    <button onclick="window.location = '${pageContext.request.contextPath}'">To main</button>
 </body>
 </html>

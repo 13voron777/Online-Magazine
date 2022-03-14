@@ -7,6 +7,8 @@ import java.util.List;
 public interface JournalSimpleService {
     List<Journal> findAllJournals() throws InterruptedException;
 
+    List<Journal> findAllSubJournals(String userName);
+
     Journal addJournal(Journal journal);
 
     Journal getJournalById(long id);

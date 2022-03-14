@@ -10,6 +10,7 @@
 <html>
     <head>
         <title>Articles</title>
+        <style><%@include file="/CSS/common.css"%></style>
     </head>
     <body>
         <div class="section">

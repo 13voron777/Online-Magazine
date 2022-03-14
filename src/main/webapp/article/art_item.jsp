@@ -10,6 +10,7 @@
 <html>
     <head>
         <title>${article.header}</title>
+        <style><%@include file="/CSS/common.css"%></style>
     </head>
     <body>
         <h1>${article.header}</h1>

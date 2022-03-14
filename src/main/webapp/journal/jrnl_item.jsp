@@ -10,6 +10,7 @@
 <html>
     <head>
         <title>${journal.name}</title>
+        <style><%@include file="/CSS/common.css"%></style>
     </head>
     <body>
         <h1>${journal.name}</h1>

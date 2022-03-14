@@ -9,6 +9,7 @@
 <html>
     <head>
         <title>Create journal</title>
+        <style><%@include file="/CSS/common.css"%></style>
     </head>
     <body>
         <form method="post" action="${pageContext.request.contextPath}/journal/add">

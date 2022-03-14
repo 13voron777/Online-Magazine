@@ -1,0 +1,21 @@
+body {
+    background-color: aquamarine;
+}
+
+h1, h2, h3, h4, h5, h6,
+p, label, input, button, textarea, :hover {
+    color: darkblue;
+}
+
+input[type=submit], button {
+    background-color: aquamarine;
+    border: 2px solid darkblue;
+    padding: 16px 32px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+input[type=submit]:hover, button:hover {
+    background-color: white;
+}

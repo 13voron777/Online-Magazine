@@ -2,6 +2,7 @@ package magazine.controllers;
 
 import magazine.persistence.dao.services.interfaces.JournalSimpleService;
 import magazine.persistence.model.Journal;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.ui.Model;
@@ -27,6 +28,14 @@ public class ArticleController {
     public ModelAndView listAllArticles(ModelAndView modelAndView) throws InterruptedException {
         modelAndView.addObject("article", articleSimpleService.findAllArticles());
         modelAndView.setViewName("article/articles");
+        return modelAndView;
+    }
+
+    @GetMapping(value = "/sub_articles")
+    public ModelAndView listAllSubArticles(ModelAndView modelAndView) throws InterruptedException {
+        String userName = SecurityContextHolder.getContext().getAuthentication().getName();
+        modelAndView.addObject("article", articleSimpleService.findAllSubArticles(userName));
+        modelAndView.setViewName("article/sub_jrnl_articles");
         return modelAndView;
     }
 

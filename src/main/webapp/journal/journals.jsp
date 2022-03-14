@@ -10,6 +10,7 @@
 <html>
     <head>
         <title>Journals</title>
+        <style><%@include file="/CSS/common.css"%></style>
     </head>
     <body>
         <h1>List of journals</h1>

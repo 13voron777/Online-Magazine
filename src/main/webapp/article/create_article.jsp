@@ -11,6 +11,7 @@
 <html>
     <head>
         <title>Create article</title>
+        <style><%@include file="/CSS/common.css"%></style>
     </head>
     <body>
         <form method="post" action="${pageContext.request.contextPath}/article/add">

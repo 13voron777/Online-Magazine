@@ -10,6 +10,7 @@
 <html>
     <head>
         <title>First Page</title>
+        <style><%@include file="/CSS/common.css"%></style>
     </head>
     <body>
         <h2>Welcome, <sec:authentication property="name"/>!</h2>
@@ -17,16 +18,16 @@
             To journals
         </button>
         <br/><br/>
-        <button onclick="window.location = '${pageContext.request.contextPath}/journal/all'">
-            To subscribed journals (in develop)
+        <button onclick="window.location = '${pageContext.request.contextPath}/journal/sub_journals'">
+            To subscribed journals
         </button>
         <br/><br/>
         <button onclick="window.location = '${pageContext.request.contextPath}/article/all'">
             To articles
         </button>
         <br/><br/>
-        <button onclick="window.location = '${pageContext.request.contextPath}/article/all'">
-            To subscribed journal's articles (in develop)
+        <button onclick="window.location = '${pageContext.request.contextPath}/article/sub_articles'">
+            To subscribed journal's articles
         </button>
         <br/><br/>
         <form action="${pageContext.request.contextPath}/logout" method="post">
