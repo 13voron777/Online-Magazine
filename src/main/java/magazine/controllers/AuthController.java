@@ -20,9 +20,9 @@ public class AuthController {
     @Autowired
     private RoleSimpleService roleSimpleService;
 
-    @GetMapping(value = "/firstPage")
-    public String firstPage() {
-        return "common/firstPage";
+    @GetMapping(value = "/main")
+    public String main() {
+        return "main";
     }
 
     @GetMapping(value = "/login")
@@ -40,15 +40,12 @@ public class AuthController {
         User user = new User();
         user.setLogin(request.getParameter("login"));
         user.setPassword("{noop}" + request.getParameter("password"));
-
         Role role = new Role();
         role.setRole("ROLE_USER");
         role.setUsername(user.getLogin());
         user.setRoles(Collections.singletonList(role));
-
         userSimpleService.addUser(user);
         roleSimpleService.addRole(role);
-
         return "redirect: login";
     }
 }

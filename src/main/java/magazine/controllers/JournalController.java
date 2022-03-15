@@ -47,8 +47,31 @@ public class JournalController {
         return modelAndView;
     }
 
+    @RequestMapping(value = "/getupdate", method = RequestMethod.GET, params = {"id"})
+    public ModelAndView listUpdate(@RequestParam(value = "id") long id, ModelAndView modelAndView) {
+        modelAndView.addObject("journal", journalSimpleService.getJournalById(id));
+        modelAndView.setViewName("journal/update_journal");
+        return modelAndView;
+    }
+
+    @PostMapping(value = "/update/{id}")
+    public ModelAndView update(@PathVariable(value = "id") long id, HttpServletRequest request,
+                         ModelAndView modelAndView) {
+        journalSimpleService.updateJournal(id, request.getParameter("name"),
+                request.getParameter("description"));
+        modelAndView.addObject("journal", journalSimpleService.getJournalById(id));
+        return listJournalByLink(id, modelAndView);
+    }
+
+    @PostMapping(value = "/remove/{id}")
+    public ModelAndView remove(@PathVariable long id, ModelAndView modelAndView) throws InterruptedException {
+        journalSimpleService.removeById(id);
+        modelAndView.addObject("journal", journalSimpleService.getJournalById(id));
+        return listAllJournals(modelAndView);
+    }
+
     @PostMapping(value = "/subscribe/{id}")
-    public ModelAndView Subscribe(@PathVariable long id, ModelAndView modelAndView) {
+    public ModelAndView subscribe(@PathVariable long id, ModelAndView modelAndView) {
         String userName = SecurityContextHolder.getContext().getAuthentication().getName();
         journalSimpleService.subscribeJournal(userName, id);
         modelAndView.addObject("journal", journalSimpleService.getJournalById(id));
@@ -56,9 +79,9 @@ public class JournalController {
     }
 
     @PostMapping(value = "/unsubscribe/{id}")
-    public ModelAndView Unsubscribe(@PathVariable long id, ModelAndView modelAndView) {
+    public ModelAndView unsubscribe(@PathVariable long id, ModelAndView modelAndView) {
         String userName = SecurityContextHolder.getContext().getAuthentication().getName();
-        journalSimpleService.unSubscribeJournal(userName, id);
+        journalSimpleService.unsubscribeJournal(userName, id);
         modelAndView.addObject("journal", journalSimpleService.getJournalById(id));
         return listJournalByLink(id, modelAndView);
     }

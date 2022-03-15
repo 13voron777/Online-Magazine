@@ -20,7 +20,12 @@ public interface JrnlRepository extends CrudRepository<Journal, Long> {
     Journal getJournalById(Long id);
 
     @Modifying
-    @Query(value = "DELETE FROM users_journal where username = ?1 and journal_id = ?2",
+    @Query(value = "UPDATE journals SET name = ?2, description = ?3 WHERE journal_id = ?1",
+    nativeQuery = true)
+    void updateJournal(long id, String name, String description);
+
+    @Modifying
+    @Query(value = "DELETE FROM users_journal WHERE username = ?1 and journal_id = ?2",
             nativeQuery = true)
     void unsubscribeJournal(String userName, Long idJournal);
 

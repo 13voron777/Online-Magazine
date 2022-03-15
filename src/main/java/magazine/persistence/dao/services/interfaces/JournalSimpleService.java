@@ -13,9 +13,13 @@ public interface JournalSimpleService {
 
     Journal getJournalById(long id);
 
+    void updateJournal(long id, String name, String description);
+
+    void removeById(long id);
+
     void subscribeJournal(String userName, Long idJournal);
 
     boolean checkSubscription(String userName, Long idJournal);
 
-    void unSubscribeJournal(String userName, Long idJournal);
+    void unsubscribeJournal(String userName, Long idJournal);
 }

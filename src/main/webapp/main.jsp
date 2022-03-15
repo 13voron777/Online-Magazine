@@ -19,7 +19,7 @@
         </button>
         <br/><br/>
         <button onclick="window.location = '${pageContext.request.contextPath}/journal/sub_journals'">
-            To subscribed journals
+            I am reading
         </button>
         <br/><br/>
         <button onclick="window.location = '${pageContext.request.contextPath}/article/all'">
@@ -27,7 +27,7 @@
         </button>
         <br/><br/>
         <button onclick="window.location = '${pageContext.request.contextPath}/article/sub_articles'">
-            To subscribed journal's articles
+            To tape
         </button>
         <br/><br/>
         <form action="${pageContext.request.contextPath}/logout" method="post">

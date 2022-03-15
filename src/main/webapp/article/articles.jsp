@@ -26,7 +26,7 @@
             </div>
         </div>
         <br/><br/>
-        <button onclick="window.location = '${pageContext.request.contextPath}/firstPage'">To main</button>
+        <button onclick="window.location = '${pageContext.request.contextPath}/main'">To main</button>
         <button onclick="window.location = 'create_article.jsp'">Create a new article</button>
     </body>
 </html>

@@ -21,6 +21,12 @@
         <form method="post" action="${pageContext.request.contextPath}/journal/unsubscribe/${journal.id}">
             <button>Unsubscribe</button>
         </form>
+        <a href="<c:url value="/journal/getupdate?id=${journal.id}"/>">
+            <button>Update Journal</button>
+        </a>
+        <form method="post" action="${pageContext.request.contextPath}/journal/remove/${journal.id}">
+            <button>Delete Journal</button>
+        </form>
 
         <br/>
         <div class="section">
@@ -37,6 +43,6 @@
         </div>
         <br/><br/>
         <button onclick="window.location = '${pageContext.request.contextPath}/journal/all'">Back</button>
-        <button onclick="window.location = '${pageContext.request.contextPath}/firstPage'">To main</button>
+        <button onclick="window.location = '${pageContext.request.contextPath}/main'">To main</button>
     </body>
 </html>

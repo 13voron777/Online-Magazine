@@ -4,9 +4,7 @@ import com.google.common.collect.Lists;
 import magazine.persistence.dao.repositories.JrnlRepository;
 import magazine.persistence.dao.services.interfaces.JournalSimpleService;
 import magazine.persistence.model.Journal;
-import magazine.persistence.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -32,6 +30,16 @@ public class JournalSimpleServiceImpl implements JournalSimpleService {
     }
 
     @Override
+    public void updateJournal(long id, String name, String description) {
+        jrnlRepository.updateJournal(id, name, description);
+    }
+
+    @Override
+    public void removeById(long id) {
+        jrnlRepository.deleteById(id);
+    }
+
+    @Override
     public void subscribeJournal(String userName, Long idJournal) {
         jrnlRepository.subscribeJournal(userName, idJournal);
     }
@@ -52,7 +60,7 @@ public class JournalSimpleServiceImpl implements JournalSimpleService {
     }
 
     @Override
-    public void unSubscribeJournal(String userName, Long idJournal) {
+    public void unsubscribeJournal(String userName, Long idJournal) {
         jrnlRepository.unsubscribeJournal(userName, idJournal);
     }
 

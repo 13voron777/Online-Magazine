@@ -8,35 +8,39 @@ CREATE  TABLE users (
 );
 
 CREATE TABLE user_roles (
-                            role_id int NOT NULL AUTO_INCREMENT,
-                            username varchar(30) NOT NULL,
-                            role varchar(30) NOT NULL,
+                            role_id INT NOT NULL AUTO_INCREMENT,
+                            username VARCHAR(30) NOT NULL,
+                            role VARCHAR(30) NOT NULL,
                             PRIMARY KEY (role_id),
                             FOREIGN KEY (username) REFERENCES users (username)
+                            ON DELETE CASCADE
 );
 
 create table journals (
-                        journal_id int auto_increment not null,
-                        name varchar(30) not null,
-                        description varchar(30) not null,
-                        primary key(journal_id)
+                        journal_id INT auto_increment NOT NULL,
+                        name VARCHAR(30) NOT NULL,
+                        description VARCHAR(30) NOT NULL,
+                        PRIMARY KEY(journal_id)
 );
 
 create table articles (
-                        article_id int auto_increment not null,
-                        header varchar(30) not null,
-                        content varchar(30) not null,
-                        journal int not null,
-                        primary key(article_id),
-                        foreign key (journal) references journals(journal_id)
+                        article_id INT auto_increment NOT NULL,
+                        header VARCHAR(30) NOT NULL,
+                        content VARCHAR(30) NOT NULL,
+                        journal INT NOT NULL,
+                        PRIMARY KEY(article_id),
+                        FOREIGN KEY(journal) REFERENCES journals(journal_id)
+                        ON DELETE CASCADE
 );
 
-create table users_journal(
-                              username VARCHAR(30) NOT NULL,
-                              journal_id int not null,
-                              primary key (username, journal_id),
-                              foreign key (username) references users(username),
-                              foreign key (journal_id) references journals(journal_id)
+create table users_journal (
+                          username VARCHAR(30) NOT NULL,
+                          journal_id INT NOT NULL,
+                          PRIMARY KEY(username, journal_id),
+                          FOREIGN KEY(username) REFERENCES users(username)
+                          ON DELETE CASCADE,
+                          FOREIGN KEY(journal_id) REFERENCES journals(journal_id)
+                          ON DELETE CASCADE
 );
 
 /*insert into profile(first_name, last_name, email, phone)
