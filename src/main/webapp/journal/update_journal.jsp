@@ -17,7 +17,7 @@
             <h3>Update journal ${journal.name}</h3>
             <input name="name" type="text" placeholder="Name ">
             <br/>
-            <textarea name="description" placeholder="Description " rows="10" cols="30"></textarea>
+            <textarea name="description" placeholder="Description " rows="10" cols="20"></textarea>
             <br/><br/>
             <button>Update journal</button>
         </form>
@@ -25,7 +25,7 @@
             <button>Back</button>
         </a>
         <button onclick="window.location = '${pageContext.request.contextPath}/main'">
-            To main
+            Main
         </button>
     </body>
 </html>

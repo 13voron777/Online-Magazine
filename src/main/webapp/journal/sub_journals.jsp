@@ -20,6 +20,6 @@
     </a>
 </c:forEach>
 <br/><br/>
-<button onclick="window.location = '${pageContext.request.contextPath}/main'">To main</button>
+<button onclick="window.location = '${pageContext.request.contextPath}/main'">Main</button>
 </body>
 </html>

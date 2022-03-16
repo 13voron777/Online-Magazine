@@ -1,18 +1,15 @@
 package magazine.controllers;
 
 import magazine.persistence.dao.services.interfaces.JournalSimpleService;
-import magazine.persistence.model.Journal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.beans.factory.annotation.*;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import magazine.persistence.dao.services.interfaces.ArticleSimpleService;
 import magazine.persistence.model.Article;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.List;
 
 @Controller
 @RequestMapping("/article")
@@ -39,21 +36,23 @@ public class ArticleController {
         return modelAndView;
     }
 
-    @PostMapping(value = "/add")
-    public String addNewArticle(HttpServletRequest request, Model model)
-            throws InterruptedException {
+    @RequestMapping(value = "/getAddArticle", method = RequestMethod.GET, params = {"id"})
+    public ModelAndView listAddArticle(@RequestParam(value = "id") long id, ModelAndView modelAndView) {
+        modelAndView.addObject("journal", journalSimpleService.getJournalById(id));
+        modelAndView.setViewName("article/create_article");
+        return modelAndView;
+    }
+
+    @PostMapping(value = "/add/{id}")
+    public ModelAndView addNewArticle(@PathVariable(value = "id") long id, HttpServletRequest request,
+                                ModelAndView modelAndView) throws InterruptedException {
         Article article = new Article();
-        List<Journal> journals = journalSimpleService.findAllJournals();
         article.setHeader(request.getParameter("header"));
         article.setContent(request.getParameter("content"));
-        for (Journal journal: journals) {
-            if (journal.getId() == Long.parseLong(request.getParameter("journal_id"))) {
-                article.setJournal(journal);
-                break;
-            }
-        }
+        article.setJournal(journalSimpleService.getJournalById(id));
         articleSimpleService.addArticle(article);
-        return "redirect: all";
+        modelAndView.addObject("journal", article.getJournal());
+        return listAllArticles(modelAndView);
     }
 
 
@@ -62,5 +61,28 @@ public class ArticleController {
         modelAndView.addObject("article", articleSimpleService.getArticleById(id));
         modelAndView.setViewName("article/art_item");
         return modelAndView;
+    }
+
+    @RequestMapping(value = "/getupdate", method = RequestMethod.GET, params = {"id"})
+    public ModelAndView listUpdate(@RequestParam(value = "id") long id, ModelAndView modelAndView) {
+        modelAndView.addObject("article", articleSimpleService.getArticleById(id));
+        modelAndView.setViewName("article/update_article");
+        return modelAndView;
+    }
+
+    @PostMapping(value = "/update/{id}")
+    public ModelAndView update(@PathVariable(value = "id") long id, HttpServletRequest request,
+                               ModelAndView modelAndView) {
+        articleSimpleService.updateArticle(id, request.getParameter("header"),
+                request.getParameter("content"));
+        modelAndView.addObject("article", articleSimpleService.getArticleById(id));
+        return listArticleByLink(id, modelAndView);
+    }
+
+    @PostMapping(value = "/remove/{id}")
+    public ModelAndView remove(@PathVariable long id, ModelAndView modelAndView) throws InterruptedException {
+        articleSimpleService.removeById(id);
+        modelAndView.addObject("article", articleSimpleService.getArticleById(id));
+        return listAllArticles(modelAndView);
     }
 }

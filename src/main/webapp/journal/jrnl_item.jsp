@@ -41,8 +41,13 @@
                 </c:forEach>
             </div>
         </div>
+
+        <br/><br/>
+        <a href="<c:url value="/article/getAddArticle?id=${journal.id}"/>">
+            <button>Create a new article</button>
+        </a>
         <br/><br/>
         <button onclick="window.location = '${pageContext.request.contextPath}/journal/all'">Back</button>
-        <button onclick="window.location = '${pageContext.request.contextPath}/main'">To main</button>
+        <button onclick="window.location = '${pageContext.request.contextPath}/main'">Main</button>
     </body>
 </html>

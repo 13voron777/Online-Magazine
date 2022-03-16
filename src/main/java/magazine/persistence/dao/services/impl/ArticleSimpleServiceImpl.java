@@ -46,6 +46,16 @@ public class ArticleSimpleServiceImpl implements ArticleSimpleService {
         return articleRepository.getArticleById(id);
     }
 
+    @Override
+    public void updateArticle(long id, String header, String content) {
+        articleRepository.updateArticle(id, header, content);
+    }
+
+    @Override
+    public void removeById(long id) {
+        articleRepository.deleteById(id);
+    }
+
     @Autowired
     public void setArticleRepository(ArticleRepository articleRepository) {
         this.articleRepository = articleRepository;

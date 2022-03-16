@@ -15,19 +15,19 @@
     <body>
         <h2>Welcome, <sec:authentication property="name"/>!</h2>
         <button onclick="window.location = '${pageContext.request.contextPath}/journal/all'">
-            To journals
+            Journals
         </button>
         <br/><br/>
         <button onclick="window.location = '${pageContext.request.contextPath}/journal/sub_journals'">
-            I am reading
+            Subscribes
         </button>
         <br/><br/>
         <button onclick="window.location = '${pageContext.request.contextPath}/article/all'">
-            To articles
+            Articles
         </button>
         <br/><br/>
         <button onclick="window.location = '${pageContext.request.contextPath}/article/sub_articles'">
-            To tape
+            Tape
         </button>
         <br/><br/>
         <form action="${pageContext.request.contextPath}/logout" method="post">

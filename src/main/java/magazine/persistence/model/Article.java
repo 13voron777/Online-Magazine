@@ -24,8 +24,7 @@ public class Article {
     public Article() {
     }
 
-    public Article(long id, String header, String content, Journal journal) {
-        this.id = id;
+    public Article(String header, String content, Journal journal) {
         this.header = header;
         this.content = content;
         this.journal = journal;

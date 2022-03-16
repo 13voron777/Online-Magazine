@@ -16,11 +16,11 @@
             <h3>Add new journal</h3>
             <input name="name" type="text" placeholder="Name ">
             <br/>
-            <textarea name="description" placeholder="Description " rows="10" cols="30"></textarea>
+            <textarea name="description" placeholder="Description " rows="10" cols="20"></textarea>
             <br/><br/>
             <button>Add journal</button>
         </form>
         <button onclick="window.location = '${pageContext.request.contextPath}/journal/all'">Back</button>
-        <button onclick="window.location = '${pageContext.request.contextPath}/main'">To main</button>
+        <button onclick="window.location = '${pageContext.request.contextPath}/main'">Main</button>
     </body>
 </html>

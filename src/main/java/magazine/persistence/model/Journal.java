@@ -29,8 +29,7 @@ public class Journal {
     public Journal() {
     }
 
-    public Journal(long id, String name, String description) {
-        this.id = id;
+    public Journal(String name, String description) {
         this.name = name;
         this.description = description;
     }

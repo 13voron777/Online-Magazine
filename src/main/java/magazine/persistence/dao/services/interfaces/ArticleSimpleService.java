@@ -12,4 +12,8 @@ public interface ArticleSimpleService {
     Article addArticle(Article article);
 
     Article getArticleById(long id);
+
+    void updateArticle(long id, String header, String content);
+
+    void removeById(long id);
 }

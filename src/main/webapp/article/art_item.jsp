@@ -15,8 +15,15 @@
     <body>
         <h1>${article.header}</h1>
         <p>${article.content}</p>
+        <a href="<c:url value="/article/getupdate?id=${article.id}"/>">
+            <button>Update Article</button>
+        </a>
+        <form method="post" action="${pageContext.request.contextPath}/article/remove/${article.id}">
+            <button>Delete Article</button>
+        </form>
+
         <br/><br/>
-        <button onclick="window.location = '${pageContext.request.contextPath}/article/all'">Back</button>
-        <button onclick="window.location = '${pageContext.request.contextPath}/main'">To main</button>
+        <button onclick="window.location = '${pageContext.request.contextPath}/article/all'">Articles</button>
+        <button onclick="window.location = '${pageContext.request.contextPath}/main'">Main</button>
     </body>
 </html>

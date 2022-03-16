@@ -14,17 +14,19 @@
         <style><%@include file="/CSS/common.css"%></style>
     </head>
     <body>
-        <form method="post" action="${pageContext.request.contextPath}/article/add">
+        <form method="post" action="${pageContext.request.contextPath}/article/add/${journal.id}">
             <h3>Add new article</h3>
             <input name="header" type="text" placeholder="Header ">
             <br/>
             <textarea name="content" placeholder="Content " rows="10" cols="30"></textarea>
-            <br/>
-            <input name="journal_id" type="number" placeholder="Journal_id ">
             <br/><br/>
             <button>Add article</button>
         </form>
-        <button onclick="window.location = '${pageContext.request.contextPath}/article/all'">Back</button>
-        <button onclick="window.location = '${pageContext.request.contextPath}/main'">To main</button>
+        <a href="<c:url value="/journal/item?id=${journal.id}"/>">
+            <button>Back</button>
+        </a>
+        <button onclick="window.location = '${pageContext.request.contextPath}/main'">
+            Main
+        </button>
     </body>
 </html>
