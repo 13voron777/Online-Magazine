@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
     <head>
@@ -21,12 +22,14 @@
         <form method="post" action="${pageContext.request.contextPath}/journal/unsubscribe/${journal.id}">
             <button>Unsubscribe</button>
         </form>
-        <a href="<c:url value="/journal/getupdate?id=${journal.id}"/>">
-            <button>Update Journal</button>
-        </a>
-        <form method="post" action="${pageContext.request.contextPath}/journal/remove/${journal.id}">
-            <button>Delete Journal</button>
-        </form>
+        <sec:authorize access="hasAuthority('ROLE_ADMIN')">
+            <a href="<c:url value="/journal/getupdate?id=${journal.id}"/>">
+                <button>Update Journal</button>
+            </a>
+            <form method="post" action="${pageContext.request.contextPath}/journal/remove/${journal.id}">
+                <button>Delete Journal</button>
+            </form>
+        </sec:authorize>
 
         <br/>
         <div class="section">
@@ -43,9 +46,11 @@
         </div>
 
         <br/><br/>
-        <a href="<c:url value="/article/getAddArticle?id=${journal.id}"/>">
-            <button>Create a new article</button>
-        </a>
+        <sec:authorize access="hasAuthority('ROLE_ADMIN')">
+            <a href="<c:url value="/article/getAddArticle?id=${journal.id}"/>">
+                <button>Create a new article</button>
+            </a>
+        </sec:authorize>
         <br/><br/>
         <button onclick="window.location = '${pageContext.request.contextPath}/journal/all'">Back</button>
         <button onclick="window.location = '${pageContext.request.contextPath}/main'">Main</button>

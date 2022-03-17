@@ -13,7 +13,7 @@
     <style><%@include file="/CSS/common.css"%></style>
 </head>
 <body>
-<h1>List of journals</h1>
+<h1>Subscriptions</h1>
 <c:forEach items="${journal}" var="journali">
     <a href="<c:url value="/journal/item?id=${journali.id}"/>">
         <span>${journali.name}</span><br/>

@@ -15,7 +15,7 @@
 <body>
 <div class="section">
     <div class="section_container">
-        <h1>List of articles</h1>
+        <h1>Tape</h1>
         <c:forEach items="${article}" var="articlei">
             <div class="list_item">
                 <a href="<c:url value="/article/item?id=${articlei.id}"/>">

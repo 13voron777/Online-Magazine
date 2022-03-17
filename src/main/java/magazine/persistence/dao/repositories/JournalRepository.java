@@ -11,7 +11,7 @@ import java.util.List;
 
 @Repository
 @Transactional
-public interface JrnlRepository extends CrudRepository<Journal, Long> {
+public interface JournalRepository extends CrudRepository<Journal, Long> {
     @Modifying
     @Query(value = "INSERT INTO users_journal(username, journal_id) VALUES (?1, ?2)",
             nativeQuery = true)
@@ -31,5 +31,5 @@ public interface JrnlRepository extends CrudRepository<Journal, Long> {
 
     @Query(value = "SELECT journal_id FROM users_journal WHERE username = ?",
             nativeQuery = true)
-    List<Integer> listAllSubJournals(String userName);
+    List<Long> listAllSubJournalsIds(String userName);
 }

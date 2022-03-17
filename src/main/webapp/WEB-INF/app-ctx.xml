@@ -32,12 +32,20 @@
 
     <bean id="logger" class="magazine.aspects.Logger"/>
     <aop:config>
+        <aop:pointcut id="articleControllerPointCut" expression="execution(* magazine.controllers.ArticleController.*(..))"/>
         <aop:pointcut id="userControllerPointCut" expression="execution(* magazine.controllers.AuthController.*(..))"/>
+        <aop:pointcut id="journalControllerPointCut" expression="execution(* magazine.controllers.JournalController.*(..))"/>
 
         <aop:aspect ref="logger" id="myAspect">
+            <aop:before method="beforeMethodInvocation" pointcut-ref="articleControllerPointCut" />
+            <aop:after-returning method="afterReturn" pointcut="execution(* magazine.persistence.dao.repositories
+            .ArticleRepository.*(..)) and args(result)"/>
             <aop:before method="beforeMethodInvocation" pointcut-ref="userControllerPointCut" />
             <aop:after-returning method="afterReturn" pointcut="execution(* magazine.persistence.dao.repositories
             .UserRepository.*(..)) and args(result)"/>
+            <aop:before method="beforeMethodInvocation" pointcut-ref="journalControllerPointCut" />
+            <aop:after-returning method="afterReturn" pointcut="execution(* magazine.persistence.dao.repositories
+            .JournalRepository.*(..)) and args(result)"/>
         </aop:aspect>
     </aop:config>
 

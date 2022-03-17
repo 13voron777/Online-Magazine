@@ -1,7 +1,7 @@
 package magazine.persistence.dao.services.impl;
 
 import com.google.common.collect.Lists;
-import magazine.persistence.dao.repositories.JrnlRepository;
+import magazine.persistence.dao.repositories.JournalRepository;
 import magazine.persistence.dao.services.interfaces.JournalSimpleService;
 import magazine.persistence.model.Journal;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,60 +12,60 @@ import java.util.List;
 
 @Service
 public class JournalSimpleServiceImpl implements JournalSimpleService {
-    private JrnlRepository jrnlRepository;
+    private JournalRepository journalRepository;
 
     @Override
     public List<Journal> findAllJournals() throws InterruptedException {
-        return Lists.newArrayList(jrnlRepository.findAll());
+        return Lists.newArrayList(journalRepository.findAll());
     }
 
     @Override
     public Journal addJournal(Journal journal) {
-        return jrnlRepository.save(journal);
+        return journalRepository.save(journal);
     }
 
     @Override
     public Journal getJournalById(long id){
-        return jrnlRepository.getJournalById(id);
+        return journalRepository.getJournalById(id);
     }
 
     @Override
     public void updateJournal(long id, String name, String description) {
-        jrnlRepository.updateJournal(id, name, description);
+        journalRepository.updateJournal(id, name, description);
     }
 
     @Override
     public void removeById(long id) {
-        jrnlRepository.deleteById(id);
+        journalRepository.deleteById(id);
     }
 
     @Override
     public void subscribeJournal(String userName, Long idJournal) {
-        jrnlRepository.subscribeJournal(userName, idJournal);
+        journalRepository.subscribeJournal(userName, idJournal);
     }
 
     @Override
     public List<Journal> findAllSubJournals(String userName) {
-        List<Integer> journals_id = jrnlRepository.listAllSubJournals(userName);
+        List<Long> journals_id = journalRepository.listAllSubJournalsIds(userName);
         List<Journal> journals = new ArrayList<>();
-        for (int id : journals_id) {
+        for (long id : journals_id) {
             journals.add(getJournalById(id));
         }
         return journals;
     }
 
     @Override
-    public boolean checkSubscription(String userName, Long idJournal) {
-        return false;
+    public boolean isSubscripted(String userName, Long idJournal) {
+        return journalRepository.listAllSubJournalsIds(userName).contains(idJournal);
     }
 
     @Override
     public void unsubscribeJournal(String userName, Long idJournal) {
-        jrnlRepository.unsubscribeJournal(userName, idJournal);
+        journalRepository.unsubscribeJournal(userName, idJournal);
     }
 
     @Autowired
-    public void setJrnlRepository(JrnlRepository jrnlRepository) {
-        this.jrnlRepository = jrnlRepository;
+    public void setJrnlRepository(JournalRepository journalRepository) {
+        this.journalRepository = journalRepository;
     }
 }

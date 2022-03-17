@@ -73,7 +73,9 @@ public class JournalController {
     @PostMapping(value = "/subscribe/{id}")
     public ModelAndView subscribe(@PathVariable long id, ModelAndView modelAndView) {
         String userName = SecurityContextHolder.getContext().getAuthentication().getName();
-        journalSimpleService.subscribeJournal(userName, id);
+        if (!journalSimpleService.isSubscripted(userName, id)) {
+            journalSimpleService.subscribeJournal(userName, id);
+        }
         modelAndView.addObject("journal", journalSimpleService.getJournalById(id));
         return listJournalByLink(id, modelAndView);
     }
@@ -81,7 +83,9 @@ public class JournalController {
     @PostMapping(value = "/unsubscribe/{id}")
     public ModelAndView unsubscribe(@PathVariable long id, ModelAndView modelAndView) {
         String userName = SecurityContextHolder.getContext().getAuthentication().getName();
-        journalSimpleService.unsubscribeJournal(userName, id);
+        if (journalSimpleService.isSubscripted(userName, id)) {
+            journalSimpleService.unsubscribeJournal(userName, id);
+        }
         modelAndView.addObject("journal", journalSimpleService.getJournalById(id));
         return listJournalByLink(id, modelAndView);
     }

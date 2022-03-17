@@ -19,7 +19,7 @@ public interface JournalSimpleService {
 
     void subscribeJournal(String userName, Long idJournal);
 
-    boolean checkSubscription(String userName, Long idJournal);
+    boolean isSubscripted(String userName, Long idJournal);
 
     void unsubscribeJournal(String userName, Long idJournal);
 }
