@@ -15,10 +15,13 @@
     </head>
     <body>
         <h1>Journals</h1>
+        <br/>
         <c:forEach items="${journal}" var="journali">
                 <a href="<c:url value="/journal/item?id=${journali.id}"/>">
-                    <span>${journali.name}</span><br/>
+                    <h3>${journali.name}</h3><br/>
                 </a>
+                <span>${journali.description}</span><br/>
+                <br/>
         </c:forEach>
         <br/><br/>
         <button onclick="window.location = '${pageContext.request.contextPath}/main'">Main</button>

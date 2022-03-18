@@ -1,6 +1,7 @@
 package magazine.controllers;
 
 import magazine.persistence.dao.services.interfaces.JournalSimpleService;
+import magazine.persistence.model.Article;
 import magazine.persistence.model.Journal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -9,6 +10,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Collections;
+import java.util.List;
 
 @Controller
 @RequestMapping("/journal")
@@ -18,15 +21,19 @@ public class JournalController {
 
     @GetMapping(value = "/all")
     public ModelAndView listAllJournals(ModelAndView modelAndView) throws InterruptedException {
-        modelAndView.addObject("journal", journalSimpleService.findAllJournals());
+        List<Journal> journals = journalSimpleService.findAllJournals();
+        Collections.reverse(journals);
+        modelAndView.addObject("journal", journals);
         modelAndView.setViewName("journal/journals");
         return modelAndView;
     }
 
     @GetMapping(value = "/sub_journals")
-    public ModelAndView listAllSubJournals(ModelAndView modelAndView) {
+    public ModelAndView listAllSubJournals(ModelAndView modelAndView) throws InterruptedException {
         String userName = SecurityContextHolder.getContext().getAuthentication().getName();
-        modelAndView.addObject("journal", journalSimpleService.findAllSubJournals(userName));
+        List<Journal> subJournals = journalSimpleService.findAllSubJournals(userName);
+        Collections.reverse(subJournals);
+        modelAndView.addObject("journal", subJournals);
         modelAndView.setViewName("journal/sub_journals");
         return modelAndView;
     }
@@ -42,7 +49,11 @@ public class JournalController {
 
     @RequestMapping(value = "/item", method = RequestMethod.GET, params = {"id"})
     public ModelAndView listJournalByLink(@RequestParam(value = "id") long id, ModelAndView modelAndView) {
-        modelAndView.addObject("journal", journalSimpleService.getJournalById(id));
+        Journal journal = journalSimpleService.getJournalById(id);
+        List<Article> journalArticles = journal.getArticles();
+        Collections.reverse(journalArticles);
+        modelAndView.addObject("journal", journal);
+        modelAndView.addObject("journalArticles", journalArticles);
         modelAndView.setViewName("journal/jrnl_item");
         return modelAndView;
     }

@@ -10,6 +10,8 @@ import magazine.persistence.dao.services.interfaces.ArticleSimpleService;
 import magazine.persistence.model.Article;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Collections;
+import java.util.List;
 
 @Controller
 @RequestMapping("/article")
@@ -23,7 +25,9 @@ public class ArticleController {
 
     @GetMapping(value = "/all")
     public ModelAndView listAllArticles(ModelAndView modelAndView) throws InterruptedException {
-        modelAndView.addObject("article", articleSimpleService.findAllArticles());
+        List<Article> articles = articleSimpleService.findAllArticles();
+        Collections.reverse(articles);
+        modelAndView.addObject("article", articles);
         modelAndView.setViewName("article/articles");
         return modelAndView;
     }
@@ -31,7 +35,9 @@ public class ArticleController {
     @GetMapping(value = "/sub_articles")
     public ModelAndView listAllSubArticles(ModelAndView modelAndView) throws InterruptedException {
         String userName = SecurityContextHolder.getContext().getAuthentication().getName();
-        modelAndView.addObject("article", articleSimpleService.findAllSubArticles(userName));
+        List<Article> subArticles = articleSimpleService.findAllSubArticles(userName);
+        Collections.reverse(subArticles);
+        modelAndView.addObject("article", subArticles);
         modelAndView.setViewName("article/sub_jrnl_articles");
         return modelAndView;
     }

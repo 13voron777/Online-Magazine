@@ -16,11 +16,14 @@
         <div class="section">
             <div class="section_container">
                 <h1>Articles</h1>
+                <br/>
                 <c:forEach items="${article}" var="articlei">
                     <div class="list_item">
                         <a href="<c:url value="/article/item?id=${articlei.id}"/>">
-                            <span>${articlei.header}</span>
+                            <h3>${articlei.header}</h3>
                         </a>
+                        <span>${articlei.content}</span>
+                        <br/>
                     </div>
                 </c:forEach>
             </div>
