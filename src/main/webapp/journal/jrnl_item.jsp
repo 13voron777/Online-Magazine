@@ -17,10 +17,9 @@
         <h1>${journal.name}</h1>
         <p>${journal.description}</p>
         <form method="post" action="${pageContext.request.contextPath}/journal/subscribe/${journal.id}">
-            <button>Subscribe</button>
-        </form>
-        <form method="post" action="${pageContext.request.contextPath}/journal/unsubscribe/${journal.id}">
-            <button>Unsubscribe</button>
+            <a href="<c:url value="/journal/item?id=${journal.id}"/>">
+                <button>Subscribe</button>
+            </a>
         </form>
         <sec:authorize access="hasAuthority('ROLE_ADMIN')">
             <a href="<c:url value="/journal/getupdate?id=${journal.id}"/>">
@@ -55,7 +54,7 @@
             </a>
         </sec:authorize>
         <br/><br/>
-        <button onclick="window.location = '${pageContext.request.contextPath}/journal/all'">Back</button>
+        <button onclick="window.location = '${pageContext.request.contextPath}/journal/all'">Journals</button>
         <button onclick="window.location = '${pageContext.request.contextPath}/main'">Main</button>
     </body>
 </html>

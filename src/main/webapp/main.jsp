@@ -14,20 +14,20 @@
     </head>
     <body>
         <h2>Welcome, <sec:authentication property="name"/>!</h2>
-        <button onclick="window.location = '${pageContext.request.contextPath}/journal/all'">
-            Journals
+        <button onclick="window.location = '${pageContext.request.contextPath}/article/sub_articles'">
+            Tape
         </button>
         <br/><br/>
         <button onclick="window.location = '${pageContext.request.contextPath}/journal/sub_journals'">
             Subscribes
         </button>
         <br/><br/>
-        <button onclick="window.location = '${pageContext.request.contextPath}/article/all'">
-            Articles
+        <button onclick="window.location = '${pageContext.request.contextPath}/journal/all'">
+            Journals
         </button>
         <br/><br/>
-        <button onclick="window.location = '${pageContext.request.contextPath}/article/sub_articles'">
-            Tape
+        <button onclick="window.location = '${pageContext.request.contextPath}/article/all'">
+            Articles
         </button>
         <br/><br/>
         <form action="${pageContext.request.contextPath}/logout" method="post">

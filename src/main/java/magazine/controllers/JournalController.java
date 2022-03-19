@@ -49,12 +49,17 @@ public class JournalController {
 
     @RequestMapping(value = "/item", method = RequestMethod.GET, params = {"id"})
     public ModelAndView listJournalByLink(@RequestParam(value = "id") long id, ModelAndView modelAndView) {
+        String userName = SecurityContextHolder.getContext().getAuthentication().getName();
         Journal journal = journalSimpleService.getJournalById(id);
         List<Article> journalArticles = journal.getArticles();
         Collections.reverse(journalArticles);
         modelAndView.addObject("journal", journal);
         modelAndView.addObject("journalArticles", journalArticles);
-        modelAndView.setViewName("journal/jrnl_item");
+        if (!journalSimpleService.isSubscripted(userName, id)) {
+            modelAndView.setViewName("journal/jrnl_item");
+        } else {
+            modelAndView.setViewName("journal/jrnl_sub_item");
+        }
         return modelAndView;
     }
 
