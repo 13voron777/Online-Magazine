@@ -1,14 +1,14 @@
 package magazine.persistence.model;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
-import java.util.Objects;
 
-@Entity(name = "articles")
 @Getter
 @Setter
+@ToString
+@EqualsAndHashCode
+@Entity(name = "articles")
 public class Article {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,28 +28,6 @@ public class Article {
         this.header = header;
         this.content = content;
         this.journal = journal;
-    }
-
-    @Override
-    public String toString() {
-        return "Article{" +
-                "id=" + id +
-                ", header='" + header + '\'' +
-                ", content='" + content + '\'' +
-                '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Article article = (Article) o;
-        return id == article.id && Objects.equals(header, article.header) && Objects.equals(content, article.content);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, header, content);
     }
 }
 

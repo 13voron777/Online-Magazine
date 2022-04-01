@@ -24,6 +24,11 @@
             <br/>
             <input type="submit" value="Login">
         </form>
+        <c:if test="${not empty param.error}">
+            <div class="error">
+                <p>Error! Try again!</p><br/>
+            </div>
+        </c:if>
         <button onclick="window.location = '${pageContext.request.contextPath}'">To main</button>
     </body>
 </html>

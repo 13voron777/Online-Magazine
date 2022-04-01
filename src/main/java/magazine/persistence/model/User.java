@@ -1,7 +1,6 @@
 package magazine.persistence.model;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -10,9 +9,11 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-@Entity(name = "users")
 @Getter
 @Setter
+@ToString
+@EqualsAndHashCode
+@Entity(name = "users")
 public class User implements UserDetails {
     @Id
     @Column(name = "username")
@@ -21,6 +22,7 @@ public class User implements UserDetails {
 
     @OneToMany
     @Transient
+    @ToString.Exclude
     private List<Role> roles = new ArrayList<>();
 
     @ManyToMany(fetch = FetchType.EAGER)

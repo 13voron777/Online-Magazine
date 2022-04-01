@@ -1,14 +1,15 @@
 package magazine.persistence.model;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
 
-@Entity(name = "user_roles")
 @Getter
 @Setter
+@ToString
+@EqualsAndHashCode
+@Entity(name = "user_roles")
 public class Role implements GrantedAuthority {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

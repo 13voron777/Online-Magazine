@@ -54,7 +54,7 @@
         </a>
     </sec:authorize>
     <br/><br/>
-    <button onclick="window.location = '${pageContext.request.contextPath}/journal/all'">Back</button>
+    <button onclick="window.location = '${pageContext.request.contextPath}/journal/all'">Journals</button>
     <button onclick="window.location = '${pageContext.request.contextPath}/main'">Main</button>
 </body>
 </html>
