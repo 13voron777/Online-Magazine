@@ -15,7 +15,7 @@ public class JournalSimpleServiceImpl implements JournalSimpleService {
     private JournalRepository journalRepository;
 
     @Override
-    public List<Journal> findAllJournals() throws InterruptedException {
+    public List<Journal> findAllJournals() {
         return Lists.newArrayList(journalRepository.findAll());
     }
 
@@ -55,7 +55,7 @@ public class JournalSimpleServiceImpl implements JournalSimpleService {
     }
 
     @Override
-    public boolean isSubscripted(String userName, Long idJournal) {
+    public boolean isSubscribed(String userName, Long idJournal) {
         return journalRepository.listAllSubJournalsIds(userName).contains(idJournal);
     }
 

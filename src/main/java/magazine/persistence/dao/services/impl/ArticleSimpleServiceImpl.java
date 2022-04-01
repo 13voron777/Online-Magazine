@@ -5,6 +5,7 @@ import magazine.persistence.dao.repositories.ArticleRepository;
 import magazine.persistence.dao.repositories.JournalRepository;
 import magazine.persistence.dao.services.interfaces.ArticleSimpleService;
 import magazine.persistence.model.Article;
+import magazine.persistence.model.Journal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,21 +18,17 @@ public class ArticleSimpleServiceImpl implements ArticleSimpleService {
     private JournalRepository journalRepository;
 
     @Override
-    public List<Article> findAllArticles() throws InterruptedException {
+    public List<Article> findAllArticles() {
         return Lists.newArrayList(articleRepository.findAll());
     }
 
     @Override
-    public List<Article> findAllSubArticles(String username) throws InterruptedException {
+    public List<Article> findAllSubArticles(String username) {
         List<Long> journals_id = journalRepository.listAllSubJournalsIds(username);
-        List<Article> allArticles = findAllArticles();
         List<Article> result = new ArrayList<>();
-        for (Article article : allArticles) {
-            for (long id : journals_id) {
-                if (article.getJournal().getId() == id) {
-                    result.add(article);
-                }
-            }
+        for (long id : journals_id) {
+            Journal journal = journalRepository.getJournalById(id);
+            result.addAll(journal.getArticles());
         }
         return result;
     }
@@ -42,7 +39,7 @@ public class ArticleSimpleServiceImpl implements ArticleSimpleService {
     }
 
     @Override
-    public Article getArticleById(long id){
+    public Article getArticleById(long id) {
         return articleRepository.getArticleById(id);
     }
 

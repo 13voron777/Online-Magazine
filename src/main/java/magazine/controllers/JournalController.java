@@ -55,7 +55,7 @@ public class JournalController {
         Collections.reverse(journalArticles);
         modelAndView.addObject("journal", journal);
         modelAndView.addObject("journalArticles", journalArticles);
-        if (!journalSimpleService.isSubscripted(userName, id)) {
+        if (!journalSimpleService.isSubscribed(userName, id)) {
             modelAndView.setViewName("journal/jrnl_item");
         } else {
             modelAndView.setViewName("journal/jrnl_sub_item");
@@ -89,7 +89,7 @@ public class JournalController {
     @PostMapping(value = "/subscribe/{id}")
     public ModelAndView subscribe(@PathVariable long id, ModelAndView modelAndView) {
         String userName = SecurityContextHolder.getContext().getAuthentication().getName();
-        if (!journalSimpleService.isSubscripted(userName, id)) {
+        if (!journalSimpleService.isSubscribed(userName, id)) {
             journalSimpleService.subscribeJournal(userName, id);
         }
         modelAndView.addObject("journal", journalSimpleService.getJournalById(id));
@@ -99,7 +99,7 @@ public class JournalController {
     @PostMapping(value = "/unsubscribe/{id}")
     public ModelAndView unsubscribe(@PathVariable long id, ModelAndView modelAndView) {
         String userName = SecurityContextHolder.getContext().getAuthentication().getName();
-        if (journalSimpleService.isSubscripted(userName, id)) {
+        if (journalSimpleService.isSubscribed(userName, id)) {
             journalSimpleService.unsubscribeJournal(userName, id);
         }
         modelAndView.addObject("journal", journalSimpleService.getJournalById(id));
